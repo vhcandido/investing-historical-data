@@ -1,1 +1,6 @@
 # Scraping instrument data from Investing.com
+
+Requires:
+* xts (optional in the future)
+* httr
+* stringr (part of tidyverse)
