@@ -49,7 +49,8 @@ download.investing <- function(curr_id, start_date, end_date = Sys.Date()) {
 		strsplit(x, '<tr>')[[1]],
 		function(r) {
 			# stringr::str_match_all return a 2col matrix
-			stringr::str_match_all(r, ".*?data-real-value=\\p{quotation mark}(\\d+\\.?\\d*)\\p{quotation mark}.*?")[[1]][,2]
+			match <- stringr::str_match_all(r, "data-real-value=\\p{quotation mark}(\\d+(?:,)?\\d*\\.?\\d*)\\p{quotation mark}")[[1]][,2]
+			if(length(match) > 0) { return(sub(',', '', match[1:5])) }
 		}))
 	
 	# Build the timestamp/OHLC matrix
